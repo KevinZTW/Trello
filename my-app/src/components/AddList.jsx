@@ -1,7 +1,22 @@
 import React, { useState } from "react";
 import "../css/List.css";
+import { useDispatch } from "react-redux";
+import { ADDLIST } from "../redux/actions";
 export default function List() {
   const [isEdit, setEdit] = useState(false);
+  const [input, setInput] = useState("");
+  const dispatch = useDispatch();
+  function handleChange(e) {
+    setInput(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (input !== "") {
+      dispatch(ADDLIST(input));
+    }
+  }
+
   const showview = (
     <div className="list">
       <div className="action">
@@ -10,7 +25,7 @@ export default function List() {
             setEdit(true);
           }}
         >
-          Add List
+          + Add a List
         </button>
       </div>
     </div>
@@ -18,15 +33,17 @@ export default function List() {
 
   const editview = (
     <div className="list">
-      <input type="text" />
-      <button>Add List</button>
-      <button
-        onClick={(e) => {
-          setEdit(false);
-        }}
-      >
-        X
-      </button>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="text" value={input} onChange={handleChange} />
+        <button>Add List</button>
+        <button
+          onClick={(e) => {
+            setEdit(false);
+          }}
+        >
+          X
+        </button>
+      </form>
     </div>
   );
 

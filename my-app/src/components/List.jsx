@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "../css/List.css";
 export default function List(props) {
   const [isEdit, setEdit] = useState(false);
+  const [input, setInput] = useState("");
   const showview = (
     <div className="list" id={props.id}>
-      <div className="title">123</div>
+      <div className="title">{props.title}</div>
       <div className="action">
         <button
           onClick={(e) => {

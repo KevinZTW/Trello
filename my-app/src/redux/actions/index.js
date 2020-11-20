@@ -1,7 +1,7 @@
-const AddTask = (name) => {
+const ADDLIST = (title) => {
   return {
-    type: "AddTask",
-    name: name,
+    type: "ADDLIST",
+    title: title,
   };
 };
 
@@ -22,4 +22,4 @@ const EditTask = (id, name) => {
     id: id,
   };
 };
-export { AddTask, DeleteTask, ToggleTask, EditTask };
+export { ADDLIST, DeleteTask, ToggleTask, EditTask };

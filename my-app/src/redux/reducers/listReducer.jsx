@@ -8,17 +8,16 @@ const listReducer = (state = List, action) => {
     //   let remaintasks = state.tasks.filter((task) => task.id != action.id);
 
     //   return { tasks: remaintasks };
-    // case "AddTask":
-    //   console.log(state);
-    //   let newtasks = [
-    //     ...state.tasks,
-    //     {
-    //       id: "todo-" + nanoid(),
-    //       name: action.name,
-    //       completed: false,
-    //     },
-    //   ];
-    //   return { tasks: newtasks };
+    case "ADDLIST":
+      console.log(state);
+
+      return [
+        ...state,
+        {
+          id: "todo-" + nanoid(),
+          title: action.title,
+        },
+      ];
 
     // case "ToggleTask":
     //   let updatetasks = state.tasks.map((task) => {

@@ -15,9 +15,8 @@ function App() {
         <h1>My Trello</h1>
       </header>
       <div className="main-board">
-        <AddList />
-
         {list}
+        <AddList />
       </div>
     </div>
   );

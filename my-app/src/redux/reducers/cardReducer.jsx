@@ -1,20 +1,21 @@
 //reducer
 import { nanoid } from "nanoid";
-const List = [{ id: "list-0", title: "React" }];
-const localtasks = JSON.parse(localStorage.getItem("List"));
-const listReducer = (state = List, action) => {
+const List = [{ listId: "list-0", id: "card-0", title: "Go crazy" }];
+
+const cardReducer = (state = List, action) => {
   switch (action.type) {
     // case "DeleteTask":
     //   let remaintasks = state.tasks.filter((task) => task.id != action.id);
 
     //   return { tasks: remaintasks };
-    case "ADDLIST":
+    case "ADDCARD":
       console.log(state);
 
       return [
         ...state,
         {
-          id: "list-" + nanoid(),
+          listId: action.listId,
+          id: "card-" + nanoid(),
           title: action.title,
         },
       ];
@@ -45,4 +46,4 @@ const listReducer = (state = List, action) => {
   }
 };
 
-export default listReducer;
+export default cardReducer;

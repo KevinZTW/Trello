@@ -5,6 +5,15 @@ const ADDLIST = (title) => {
   };
 };
 
+//card
+const ADDCARD = (listId, title) => {
+  return {
+    type: "ADDCARD",
+    title: title,
+    listId: listId,
+  };
+};
+
 const DeleteTask = (id) => {
   return {
     type: "DeleteTask",
@@ -22,4 +31,4 @@ const EditTask = (id, name) => {
     id: id,
   };
 };
-export { ADDLIST, DeleteTask, ToggleTask, EditTask };
+export { ADDLIST, ADDCARD, DeleteTask, ToggleTask, EditTask };

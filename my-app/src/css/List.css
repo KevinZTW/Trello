@@ -4,3 +4,9 @@
   padding: 10px;
   margin-right: 10px;
 }
+.title {
+  font-size: 23px;
+}
+.cardWrapper {
+  margin-bottom: 6px;
+}

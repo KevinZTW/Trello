@@ -22,6 +22,18 @@ const listReducer = (state = List, action) => {
           cardIds: [],
         },
       ];
+
+    case "CHANGETITLE ":
+      console.log("hihi");
+      let editedlist = state.map((list) => {
+        if (list.id === action.listId) {
+          return { ...list, title: action.newtitle };
+        }
+        return list;
+      });
+      console.log(editedlist);
+      return editedlist;
+
     case "ADDCARD":
       let newlist = state.map((list) => {
         if (list.id === action.listId) {

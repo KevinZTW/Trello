@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "../css/List.css";
 import Card from "../components/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { ADDCARD } from "../redux/actions";
+import { ADDCARD, CHANGETITLE } from "../redux/actions";
 import { Droppable } from "react-beautiful-dnd";
 import { nanoid } from "nanoid";
+
 export default function List(props) {
   const [isEdit, setEdit] = useState(false);
+  const [titleisEdit, settitleEdit] = useState(false);
   const [input, setInput] = useState("");
+  const [newtitle, setNewTitle] = useState(props.title);
   const dispatch = useDispatch();
 
   function addCard() {
@@ -44,8 +47,42 @@ export default function List(props) {
   });
 
   const showview = (
-    <div className="list" id={props.id}>
-      <div className="title">{props.title}</div>
+    <div
+      className="list"
+      id={props.id}
+      onClick={() => {
+        settitleEdit(false);
+      }}
+    >
+      {titleisEdit ? (
+        <div>
+          <input
+            type="text"
+            value={newtitle}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            onChange={(e) => {
+              setNewTitle(e.target.value);
+            }}
+            onBlur={() => {
+              settitleEdit(false);
+              dispatch(CHANGETITLE(props.id, newtitle));
+            }}
+          />
+        </div>
+      ) : (
+        <div
+          className="title"
+          onClick={(e) => {
+            e.stopPropagation();
+            settitleEdit(true);
+          }}
+        >
+          {props.title}
+        </div>
+      )}
+
       <Droppable droppableId={props.id}>
         {(provided) => (
           <div

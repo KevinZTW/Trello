@@ -4,7 +4,13 @@ const ADDLIST = (title) => {
     title: title,
   };
 };
-
+const CHANGETITLE = (listId, newtitle) => {
+  return {
+    type: "CHANGETITLE ",
+    newtitle: newtitle,
+    listId: listId,
+  };
+};
 //card
 const ADDCARD = (listId, title, newcardId) => {
   return {
@@ -12,24 +18,6 @@ const ADDCARD = (listId, title, newcardId) => {
     title: title,
     listId: listId,
     newcardId: newcardId,
-  };
-};
-
-const DeleteTask = (id) => {
-  return {
-    type: "DeleteTask",
-    id: id,
-  };
-};
-
-const ToggleTask = (id) => {
-  return { type: "ToggleTask", id: id };
-};
-const EditTask = (id, name) => {
-  return {
-    type: "EditTask",
-    name: name,
-    id: id,
   };
 };
 
@@ -43,4 +31,4 @@ const SWITCHCARDINLIST = (listId, destination, source) => {
   };
 };
 
-export { SWITCHCARDINLIST, ADDLIST, ADDCARD, DeleteTask, ToggleTask, EditTask };
+export { SWITCHCARDINLIST, ADDLIST, ADDCARD, CHANGETITLE };

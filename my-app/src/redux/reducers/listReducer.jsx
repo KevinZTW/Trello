@@ -1,7 +1,10 @@
 //reducer
 import { nanoid } from "nanoid";
-const List = [{ id: "list-0", title: "React" }];
-const localtasks = JSON.parse(localStorage.getItem("List"));
+const List = [
+  { id: "list-0", title: "React", cardIds: ["card-0", "card-1", "card-2"] },
+  { id: "list-1", title: "Redux", cardIds: ["card-3"] },
+];
+
 const listReducer = (state = List, action) => {
   switch (action.type) {
     // case "DeleteTask":
@@ -16,9 +19,33 @@ const listReducer = (state = List, action) => {
         {
           id: "list-" + nanoid(),
           title: action.title,
+          cardIds: [],
         },
       ];
+    case "ADDCARD":
+      let newlist = state.map((list) => {
+        if (list.id === action.listId) {
+          return { ...list, cardIds: [...list.cardIds, action.newcardId] };
+        }
+        return list;
+      });
+      console.log(newlist);
+      return newlist;
 
+    case "SWITCHCARDINLIST": //listId, destination, source
+      let newState = state.map((list) => {
+        console.log(list.id, action.listId);
+        if (list.id === action.listId) {
+          let newcardIds = list.cardIds;
+          [newcardIds[action.destination], newcardIds[action.source]] = [
+            newcardIds[action.source],
+            newcardIds[action.destination],
+          ];
+          return { ...list, cardIds: newcardIds };
+        }
+        return list;
+      });
+      return newState;
     // case "ToggleTask":
     //   let updatetasks = state.tasks.map((task) => {
     //     console.log(action.id, task.id);

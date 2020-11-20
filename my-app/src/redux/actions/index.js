@@ -6,11 +6,12 @@ const ADDLIST = (title) => {
 };
 
 //card
-const ADDCARD = (listId, title) => {
+const ADDCARD = (listId, title, newcardId) => {
   return {
     type: "ADDCARD",
     title: title,
     listId: listId,
+    newcardId: newcardId,
   };
 };
 
@@ -31,4 +32,15 @@ const EditTask = (id, name) => {
     id: id,
   };
 };
-export { ADDLIST, ADDCARD, DeleteTask, ToggleTask, EditTask };
+
+const SWITCHCARDINLIST = (listId, destination, source) => {
+  console.log(listId);
+  return {
+    type: "SWITCHCARDINLIST",
+    listId: listId,
+    destination: destination,
+    source: source,
+  };
+};
+
+export { SWITCHCARDINLIST, ADDLIST, ADDCARD, DeleteTask, ToggleTask, EditTask };

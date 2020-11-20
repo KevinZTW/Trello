@@ -1,8 +1,13 @@
 //reducer
 import { nanoid } from "nanoid";
-const List = [{ listId: "list-0", id: "card-0", title: "Go crazy" }];
+const card = [
+  { id: "card-0", title: "Go crazy" },
+  { id: "card-1", title: "youtube video" },
+  { id: "card-2", title: "there's no hope in life" },
+  { id: "card-3", title: "triple for loop is awesome" },
+];
 
-const cardReducer = (state = List, action) => {
+const cardReducer = (state = card, action) => {
   switch (action.type) {
     // case "DeleteTask":
     //   let remaintasks = state.tasks.filter((task) => task.id != action.id);
@@ -10,12 +15,12 @@ const cardReducer = (state = List, action) => {
     //   return { tasks: remaintasks };
     case "ADDCARD":
       console.log(state);
+      console.log(action.newcardId);
 
       return [
         ...state,
         {
-          listId: action.listId,
-          id: "card-" + nanoid(),
+          id: action.newcardId,
           title: action.title,
         },
       ];
